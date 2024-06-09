@@ -1,11 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:meals/models/meal.dart';
+import 'package:meals/screens/meals_detail.dart';
+import 'package:meals/widgets/meal_items.dart';
 
 class Meals extends StatelessWidget {
   const Meals({super.key, required this.title, required this.meals});
 
   final String title;
   final List<Meal> meals;
+
+  void goDetail(BuildContext context, Meal meal){
+    Navigator.push(context, MaterialPageRoute(builder: (context) => MealsDetail(meal: meal),));
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -31,9 +37,9 @@ class Meals extends StatelessWidget {
       content = ListView.builder(
         itemCount: meals.length,
         itemBuilder: (context, index) =>
-          Text(
-            meals[index].title, style: TextStyle(color: Colors.amber),
-          )
+          MealsItem(meal: meals[index], detail: (){ 
+            goDetail(context, meals[index]);
+          })
         ,
       );
     }
