@@ -9,8 +9,12 @@ class Meals extends StatelessWidget {
   final String title;
   final List<Meal> meals;
 
-  void goDetail(BuildContext context, Meal meal){
-    Navigator.push(context, MaterialPageRoute(builder: (context) => MealsDetail(meal: meal),));
+  void goDetail(BuildContext context, Meal meal) {
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => MealsDetail(meal: meal),
+        ));
   }
 
   @override
@@ -25,10 +29,14 @@ class Meals extends StatelessWidget {
                   color: Theme.of(context).colorScheme.onBackground,
                 ),
           ),
-          const SizedBox(height: 16,),
-          Text("Try selecting diffrent category",style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-            color: Theme.of(context).colorScheme.onBackground
-          ))
+          const SizedBox(
+            height: 16,
+          ),
+          Text("Try selecting diffrent category",
+              style: Theme.of(context)
+                  .textTheme
+                  .bodyLarge
+                  ?.copyWith(color: Theme.of(context).colorScheme.onBackground))
         ],
       ),
     );
@@ -36,18 +44,22 @@ class Meals extends StatelessWidget {
     if (meals.isNotEmpty) {
       content = ListView.builder(
         itemCount: meals.length,
-        itemBuilder: (context, index) =>
-          MealsItem(meal: meals[index], detail: (){ 
-            goDetail(context, meals[index]);
-          })
-        ,
+        itemBuilder: (context, index) => MealsItem(
+            meal: meals[index],
+            onSelected: (meal) {
+              goDetail(context,meal);
+            }),
       );
     }
 
     return Scaffold(
-        appBar: AppBar(
-          title: Text(title,style: TextStyle(color: Colors.white),),
+      appBar: AppBar(
+        title: Text(
+          title,
+          style: const TextStyle(color: Colors.white),
         ),
-        body: content,);
+      ),
+      body: content,
+    );
   }
 }

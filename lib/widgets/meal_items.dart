@@ -6,9 +6,9 @@ import 'package:meals/widgets/meal_item_trait.dart';
 import 'package:transparent_image/transparent_image.dart';
 
 class MealsItem extends StatelessWidget {
-  const MealsItem({super.key, required this.meal, required this.detail});
+  const MealsItem({super.key, required this.meal, required this.onSelected});
 
-  final void Function() detail;
+  final void Function(Meal meal) onSelected;
   final Meal meal;
 
   String get _getComplexity {
@@ -30,7 +30,9 @@ class MealsItem extends StatelessWidget {
       clipBehavior: Clip.hardEdge,
       elevation: 2,
       child: InkWell(
-        onTap: detail,
+        onTap: () {
+          onSelected(meal);
+        },
         child: Stack(
           children: [
             FadeInImage(
@@ -73,7 +75,7 @@ class MealsItem extends StatelessWidget {
                               icon: Icons.attach_money,
                               text: _getAffordability),
                         ],
-                      )
+                      ),
                     ],
                   )),
             )
