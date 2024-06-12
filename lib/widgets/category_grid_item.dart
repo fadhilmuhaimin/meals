@@ -6,7 +6,6 @@ class CategoryGridItem extends StatelessWidget {
 
   final Category category;
   final void Function() selected;
-  
 
   @override
   Widget build(BuildContext context) {

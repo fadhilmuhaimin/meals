@@ -3,6 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:meals/data/dummy_data.dart';
 import 'package:meals/screens/categories.dart';
 import 'package:meals/screens/meals.dart';
+import 'package:meals/screens/tabs.dart';
 
 
 final theme = ThemeData(
@@ -23,7 +24,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: theme,
-      home: const Categories()
+      home: const Tabs()
     );
   }
 }
